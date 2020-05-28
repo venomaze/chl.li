@@ -1,4 +1,5 @@
 const axios = require('axios');
+const isURL = require('is-url');
 
 class ServiceError extends Error {}
 
@@ -15,6 +16,10 @@ const createAPI = timeout => {
 };
 
 const shorten = async (url, options = {}) => {
+  if (!isURL(url)) {
+    throw new Error('The URL is not valid.');
+  }
+
   const timeout = options.timeout || 5000;
   const alias = options.alias || ''; // Default: Random alias
   const expires = options.expires || 0; // In minutes, Default: Never expire
@@ -42,4 +47,7 @@ const shorten = async (url, options = {}) => {
   }
 };
 
+const isServiceError = err => err instanceof ServiceError;
+
 module.exports.shorten = shorten;
+module.exports.isServiceError = isServiceError;
