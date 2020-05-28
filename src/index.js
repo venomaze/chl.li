@@ -14,14 +14,14 @@ const createAPI = timeout => {
   return api;
 };
 
-const shorten = async (url, options) => {
+const shorten = async (url, options = {}) => {
   const timeout = options.timeout || 5000;
   const alias = options.alias || ''; // Default: Random alias
   const expires = options.expires || 0; // In minutes, Default: Never expire
   const api = createAPI(timeout);
 
   try {
-    const res = await api.post({
+    const res = await api.post('/shorten', {
       url,
       alias,
       expires,
@@ -42,4 +42,4 @@ const shorten = async (url, options) => {
   }
 };
 
-module.expires.shorten = shorten;
+module.exports.shorten = shorten;
