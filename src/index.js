@@ -98,8 +98,10 @@ const isValidationError = err => err instanceof errors.ValidationError;
  */
 const isClientError = err => err instanceof errors.ClientError;
 
-module.exports.shorten = shorten;
-module.exports.shortenMany = shortenMany;
-module.exports.isServiceError = isServiceError;
-module.exports.isValidationError = isValidationError;
-module.exports.isClientError = isClientError;
+module.exports = {
+  shorten,
+  shortenMany,
+  isClientError,
+  isServiceError,
+  isValidationError,
+};
