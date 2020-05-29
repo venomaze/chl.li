@@ -47,7 +47,25 @@ const shorten = async (url, options = {}) => {
   }
 };
 
+const shortenMany = (urls, options) => {
+  const promises = [];
+  const timeout = options.timeout || 5000;
+
+  urls.forEach(url => {
+    const shortenPromise = shorten(url.url, {
+      timeout,
+      alias: url.alias,
+      expires: url.expires,
+    });
+
+    promises.push(shortenPromise);
+  });
+
+  return Promise.all(promises);
+};
+
 const isServiceError = err => err instanceof ServiceError;
 
 module.exports.shorten = shorten;
+module.exports.shortenMany = shortenMany;
 module.exports.isServiceError = isServiceError;
