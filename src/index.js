@@ -15,8 +15,8 @@ const createAPI = timeout => {
   return api;
 };
 
-const shorten = async (url, options = {}) => {
-  if (!isURL(url)) {
+const shorten = async (destination, options = {}) => {
+  if (!isURL(destination)) {
     throw new Error('The URL is not valid.');
   }
 
@@ -27,7 +27,7 @@ const shorten = async (url, options = {}) => {
 
   try {
     const res = await api.post('/shorten', {
-      url,
+      url: destination,
       alias,
       expires,
     });
@@ -47,15 +47,15 @@ const shorten = async (url, options = {}) => {
   }
 };
 
-const shortenMany = (urls, options) => {
+const shortenMany = (destinations, options) => {
   const promises = [];
   const timeout = options.timeout || 5000;
 
-  urls.forEach(url => {
-    const shortenPromise = shorten(url.url, {
+  destinations.forEach(destination => {
+    const shortenPromise = shorten(destination.url, {
       timeout,
-      alias: url.alias,
-      expires: url.expires,
+      alias: destination.alias,
+      expires: destination.expires,
     });
 
     promises.push(shortenPromise);
