@@ -1,8 +1,8 @@
 {
   "name": "chl.li",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "description": "JavaScript Client for Chl.li url shortener api",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,8 +10,15 @@
     "type": "git",
     "url": "git+https://github.com/venomaze/chl.li.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "url",
+    "shortener",
+    "url shortener",
+    "shorten",
+    "api",
+    "chl.li"
+  ],
+  "author": "Venomaze",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/venomaze/chl.li/issues"
