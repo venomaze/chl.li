@@ -55,16 +55,24 @@ const shortenMany = (destinations, options = {}) => {
   const timeout = options.timeout || 5000;
 
   destinations.forEach(destination => {
+    const url = addProtocol(destination.url);
     const alias = destination.alias || ''; // Default: Random alias
     const expires = destination.expires || 0; // In minutes, Default: Never expire
 
-    const shortenPromise = shorten(destination.url, {
+    if (!isURL(url)) {
+      const error = new Error('The URL is not valid.');
+      const rejectedPromise = Promise.reject(error);
+
+      return promises.push(rejectedPromise);
+    }
+
+    const shortenPromise = shorten(url, {
       timeout,
       expires,
       alias,
     });
 
-    promises.push(shortenPromise);
+    return promises.push(shortenPromise);
   });
 
   return Promise.all(promises);
