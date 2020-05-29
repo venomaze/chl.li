@@ -5,6 +5,12 @@ const { addProtocol } = require('./lib/url');
 
 class ServiceError extends Error {}
 
+/**
+ * Shorten the given URL
+ *
+ * @param {String} destination The destination URL
+ * @param {Object} options Custom options
+ */
 const shorten = async (destination, options = {}) => {
   const url = addProtocol(destination);
   const timeout = options.timeout || 5000;
@@ -38,6 +44,12 @@ const shorten = async (destination, options = {}) => {
   }
 };
 
+/**
+ * Shorten all the given URLs
+ *
+ * @param {Array} destinations An array containing all destination objects
+ * @param {Object} options Options object to add a custom timeout
+ */
 const shortenMany = (destinations, options) => {
   const promises = [];
   const timeout = options.timeout || 5000;
@@ -55,6 +67,11 @@ const shortenMany = (destinations, options) => {
   return Promise.all(promises);
 };
 
+/**
+ * Check if the error is related to the service or not
+ *
+ * @param {Object} err The given Error object
+ */
 const isServiceError = err => err instanceof ServiceError;
 
 module.exports.shorten = shorten;
