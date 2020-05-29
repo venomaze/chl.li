@@ -50,7 +50,7 @@ const shorten = async (destination, options = {}) => {
  * @param {Array} destinations An array containing all destination objects
  * @param {Object} options Options object to add a custom timeout
  */
-const shortenMany = (destinations, options) => {
+const shortenMany = (destinations, options = {}) => {
   const promises = [];
   const timeout = options.timeout || 5000;
 

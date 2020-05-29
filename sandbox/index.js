@@ -13,7 +13,7 @@ shortener
       return console.log(`Service: ${err.message}`);
     }
 
-    console.log(err.message);
+    return console.log(err.message);
   });
 
 shortener
@@ -24,7 +24,7 @@ shortener
       return console.log(`Service: ${err.message}`);
     }
 
-    console.log(err.message);
+    return console.log(err.message);
   });
 
 shortener
@@ -35,5 +35,10 @@ shortener
       return console.log(`Service: ${err.message}`);
     }
 
-    console.log(err.message);
+    return console.log(err.message);
   });
+
+shortener
+  .shortenMany([{ url: 'google.com' }, { url: 'yahoo.com' }])
+  .then(console.log)
+  .catch(err => console.log(err.message));
