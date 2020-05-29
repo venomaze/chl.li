@@ -59,7 +59,7 @@ const shortenMany = (destinations, options = {}) => {
     const expires = destination.expires || 0; // In minutes, Default: Never expire
 
     if (!isURL(url)) {
-      const error = new Error('The URL is not valid.');
+      const error = new errors.ValidationError('The URL is not valid.');
       const rejectedPromise = Promise.reject(error);
 
       return promises.push(rejectedPromise);
