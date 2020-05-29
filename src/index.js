@@ -2,8 +2,7 @@ const isURL = require('is-url');
 
 const { createAPI } = require('./lib/api');
 const { addProtocol } = require('./lib/url');
-
-class ServiceError extends Error {}
+const errors = require('./lib/errors');
 
 /**
  * Shorten the given URL
@@ -19,7 +18,7 @@ const shorten = async (destination, options = {}) => {
   const api = createAPI(timeout);
 
   if (!isURL(url)) {
-    throw new Error('The URL is not valid.');
+    throw new errors.ValidationError('The URL is not valid.');
   }
 
   try {
@@ -37,10 +36,10 @@ const shorten = async (destination, options = {}) => {
       const { data } = err.response;
       const error = `${data[0].field}: ${data[0].message}`;
 
-      throw new ServiceError(error);
+      throw new errors.ServiceError(error);
     }
 
-    throw new Error(err);
+    throw new errors.ClientError(err);
   }
 };
 
@@ -83,8 +82,24 @@ const shortenMany = (destinations, options = {}) => {
  *
  * @param {Object} err The given Error object
  */
-const isServiceError = err => err instanceof ServiceError;
+const isServiceError = err => err instanceof errors.ServiceError;
+
+/**
+ * Check if the error is related to the URL validation or not
+ *
+ * @param {Object} err The given Error object
+ */
+const isValidationError = err => err instanceof errors.ValidationError;
+
+/**
+ * Check if the error is related to the Axios client or not
+ *
+ * @param {Object} err The given Error object
+ */
+const isClientError = err => err instanceof errors.ClientError;
 
 module.exports.shorten = shorten;
 module.exports.shortenMany = shortenMany;
 module.exports.isServiceError = isServiceError;
+module.exports.isValidationError = isValidationError;
+module.exports.isClientError = isClientError;
