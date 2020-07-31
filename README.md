@@ -1,20 +1,22 @@
 # Chl.li JavaScript client
 
-A JavaScript client (unofficial) for the Chl.li url shortener api. This package uses Axios for the requests.
+🔗 A JavaScript client for [Chl.li](https://chl.li) url shortening api.  
+This package uses Axios for the requests.
 
 ## Installation
 
-To install this package you use either [npm](https://npmjs.com) or GitHub:
+To install this package you can either use [npm](https://npmjs.com/package/chl.li) or GitHub:
 
 ```
-npm install --save chl.li
+npm install chl.li
 or
 git clone https://github.com/venomaze/chl.li.git
 ```
 
 ## Usage
 
-We have two main methods, the first one is shorten and the second one is shortenMany. the first one is used to shorten just **one** URL. Example:
+We have two main methods, the first one is `shorten` and the second one is `shortenMany`.  
+The first one is used to shorten just **one** URL at a time. Example:
 
 ```js
 const shortener = require('chl.li');
@@ -29,7 +31,7 @@ shortener
   .catch(err => console.log(err.message));
 ```
 
-The second one can be used to shorten multiple URLs together. Example:
+The second one can be used to shorten **multiple** URLs together. Example:
 
 ```js
 const shortener = require('chl.li');
