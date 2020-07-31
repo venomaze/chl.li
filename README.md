@@ -1,7 +1,7 @@
 # Chl.li JavaScript client
 
 🔗 A JavaScript client for [Chl.li](https://chl.li) url shortening api.  
-This package uses Axios for the requests.
+This package uses [Axios](https://github.com/axios/axios) for HTTP requests.
 
 ## Installation
 
