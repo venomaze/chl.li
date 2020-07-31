@@ -1,7 +1,7 @@
 /**
- * Add https protocol to the url if it doesn't have it already
- *
- * @param {String} url The URL which the protocol is added to
+ * Add https protocol to the given url
+ * @param {String} url - The URL which the protocol is going to be added to
+ * @returns {String} - The URL with the added protocol
  */
 const addProtocol = url => {
   const protocolRelativePattern = /^\/\/:/;

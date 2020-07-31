@@ -6,9 +6,9 @@ const errors = require('./lib/errors');
 
 /**
  * Shorten the given URL
- *
- * @param {String} destination The destination URL
- * @param {Object} options Custom options
+ * @param {String} destination - The destination URL
+ * @param {Object} [options] - Custom options (optional)
+ * @returns {Promise} - The shortened URL
  */
 const shorten = async (destination, options = {}) => {
   const url = addProtocol(destination);
@@ -45,9 +45,9 @@ const shorten = async (destination, options = {}) => {
 
 /**
  * Shorten all the given URLs
- *
- * @param {Array} destinations An array containing all destination objects
- * @param {Object} options Options object to add a custom timeout
+ * @param {Array} destinations - An array containing all destination objects
+ * @param {Object} [options] - Options object containing a custom timeout (optional)
+ * @returns {Promise} - All shortened URLs
  */
 const shortenMany = (destinations, options = {}) => {
   const promises = [];
@@ -78,23 +78,23 @@ const shortenMany = (destinations, options = {}) => {
 };
 
 /**
- * Check if the error is related to the service or not
- *
- * @param {Object} err The given Error object
+ * Check if the error is related to the service (chl.li server) or not
+ * @param {Object} err - The given Error object
+ * @returns {Boolean} - True if it is related to the service itself
  */
 const isServiceError = err => err instanceof errors.ServiceError;
 
 /**
  * Check if the error is related to the URL validation or not
- *
- * @param {Object} err The given Error object
+ * @param {Object} err - The given Error object
+ * @returns {Boolean} - True if it is related to URL validation
  */
 const isValidationError = err => err instanceof errors.ValidationError;
 
 /**
  * Check if the error is related to the Axios client or not
- *
- * @param {Object} err The given Error object
+ * @param {Object} err - The given Error object
+ * @returns {Boolean} - True if it is related to the Axios client
  */
 const isClientError = err => err instanceof errors.ClientError;
 

@@ -2,8 +2,8 @@ const axios = require('axios');
 
 /**
  * Create and return an Axios instance
- *
- * @param {Number} timeout The amount of timeout for each request
+ * @param {Number} timeout - Timeout for each request
+ * @returns {Object} - Axios api instance
  */
 const createAPI = timeout => {
   const api = axios.create({
