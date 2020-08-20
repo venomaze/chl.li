@@ -1,6 +1,6 @@
 {
   "name": "chl.li",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "JavaScript Client for Chl.li url shortening api.",
   "main": "src/index.js",
   "scripts": {
